@@ -16,7 +16,7 @@ export default function LandingPageBuilder() {
   const [activeTab, setActiveTab] = useState<"gallery" | "productCards" | "highlights">("productCards");
   
   // Tab 1: Gallery
-  const [galleryItems, setGalleryItems] = useState([
+  const [galleryItems, setGalleryItems] = useState<{ id: string; image: string | null; title: string; link: string }[]>([
     { id: "g1", image: "https://images.unsplash.com/photo-1614594975525-e45190c55d0b?w=800&q=80", title: "Rare Variegation", link: "/category/rare" }
   ]);
 
@@ -29,7 +29,7 @@ export default function LandingPageBuilder() {
   const [selectedProductsForCard, setSelectedProductsForCard] = useState<string[]>([]);
 
   // Tab 3: Highlights
-  const [mediaHighlights, setMediaHighlights] = useState([
+  const [mediaHighlights, setMediaHighlights] = useState<{ id: string; media: string | null; type: string; title: string; productId: string }[]>([
     { id: "m1", media: "https://images.unsplash.com/photo-1620127807580-128a1ccaa2b2?w=800&q=80", type: "image", title: "Daily Calathea Care", productId: "PRD-3" }
   ]);
 
@@ -44,6 +44,12 @@ export default function LandingPageBuilder() {
     setIsAddingProductCard(false);
     setNewProductCardTitle("");
     setSelectedProductsForCard([]);
+  };
+
+  const toggleProductSelection = (id: string) => {
+    setSelectedProductsForCard(prev =>
+      prev.includes(id) ? prev.filter(pid => pid !== id) : [...prev, id]
+    );
   };
 
   const addMediaHighlight = () => {
