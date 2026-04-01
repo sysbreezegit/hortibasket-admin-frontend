@@ -1,1 +1,6 @@
-export default function Page() { return <div className="p-6 text-2xl"> Page</div>; }
+import { redirect } from "next/navigation";
+
+// Login is now at the root route "/"
+export default function LoginRedirect() {
+  redirect("/");
+}

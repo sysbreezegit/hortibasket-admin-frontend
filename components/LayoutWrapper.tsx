@@ -237,7 +237,7 @@ export function LayoutWrapper({ children }: LayoutWrapperProps) {
                 <DropdownMenuSeparator className="bg-[#00C725]/40 mx-2" />
                 <DropdownMenuItem className='text-[#e55c5c] focus:bg-[#e55c5c]/10 focus:text-[#d44848] rounded-lg cursor-pointer my-1 text-[13px] font-medium transition-colors' onClick={() => {
                   useAuthStore.getState().logout();
-                  router.push("/login");
+                  router.push("/");
                 }}>
                   <LogOut className='mr-2 h-[14px] w-[14px]' />
                   <span>Log out</span>
