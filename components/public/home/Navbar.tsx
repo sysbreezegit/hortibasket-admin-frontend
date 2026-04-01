@@ -10,7 +10,7 @@ const Navbar = () => {
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   return (
-    <nav className="bg-white sticky top-0 z-50 border-gray-100">
+    <nav className="bg-[#F2F0EA] sticky top-0 z-50 border-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
         <div className="flex items-center justify-between">
           {/* Menu Button & Logo - Grouped on mobile, separate on desktop */}

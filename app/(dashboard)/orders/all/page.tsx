@@ -16,7 +16,7 @@ export default function OrdersPage() {
   const [search, setSearch] = useState("");
 
   return (
-    <div className="min-h-full bg-[#fcfdfa] p-8 lg:p-12 font-sans selection:bg-[#cae4c5] selection:text-[#254222]">
+    <div className="min-h-full bg-[#E3E0D8] p-8 lg:p-12 font-sans selection:bg-[#00C725] selection:text-[#0D140B]">
       {/* Header Section */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}
@@ -25,13 +25,13 @@ export default function OrdersPage() {
         className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6"
       >
         <div>
-          <p className="text-[#82B34B] font-mono text-xs uppercase tracking-[0.2em] mb-2 font-semibold">
+          <p className="text-[#00C725] font-mono text-xs uppercase tracking-[0.2em] mb-2 font-semibold">
             Fulfillment Management
           </p>
-          <h1 className="text-4xl md:text-5xl font-editorial-serif text-[#254222] tracking-tight leading-tight">
+          <h1 className="text-4xl md:text-5xl font-editorial-serif text-[#0D140B] tracking-tight leading-tight">
             Marketplace Orders
           </h1>
-          <p className="text-[#4F684C] mt-2 text-sm md:text-base max-w-xl pr-4">
+          <p className="text-[#3B5238] mt-2 text-sm md:text-base max-w-xl pr-4">
             Oversee all cross-supplier transactions and patron purchases.
           </p>
         </div>
@@ -39,32 +39,32 @@ export default function OrdersPage() {
 
       {/* Controls */}
       <div className="flex flex-col md:flex-row gap-4 mb-8 justify-between items-center">
-         <div className="flex border border-[#cae4c5]/60 bg-white w-full md:max-w-md items-center px-4 py-2 hover:border-[#cae4c5] transition-colors focus-within:border-[#82B34B]">
-            <Search size={16} className="text-[#4F684C]" />
+         <div className="flex border border-[#0D140B] bg-[#F2F0EA] w-full md:max-w-md items-center px-4 py-2 hover:border-[#0D140B] transition-colors focus-within:border-[#00C725]">
+            <Search size={16} className="text-[#3B5238]" />
             <input 
                type="text" 
                placeholder="Search patron, ID, or supplier..." 
-               className="bg-transparent border-0 focus:ring-0 text-sm text-[#254222] w-full ml-2 placeholder:text-[#4F684C]/50"
+               className="bg-transparent border-0 focus:ring-0 text-sm text-[#0D140B] w-full ml-2 placeholder:text-[#3B5238]/50"
                value={search}
                onChange={(e) => setSearch(e.target.value)}
             />
          </div>
          <div className="flex gap-4 w-full md:w-auto">
-            <button className="flex items-center justify-between w-full md:w-auto gap-4 border border-[#cae4c5]/60 bg-white px-6 py-2 text-[11px] font-bold uppercase tracking-widest text-[#254222]">
+            <button className="flex items-center justify-between w-full md:w-auto gap-4 border border-[#0D140B] bg-[#F2F0EA] px-6 py-2 text-[11px] font-bold uppercase tracking-widest text-[#0D140B]">
               Filter by Status <Filter size={14} />
             </button>
-            <button className="flex items-center justify-between w-full md:w-auto gap-4 border border-[#cae4c5]/60 bg-white px-6 py-2 text-[11px] font-bold uppercase tracking-widest text-[#254222]">
+            <button className="flex items-center justify-between w-full md:w-auto gap-4 border border-[#0D140B] bg-[#F2F0EA] px-6 py-2 text-[11px] font-bold uppercase tracking-widest text-[#0D140B]">
               Export CSV <ChevronDown size={14} />
             </button>
          </div>
       </div>
 
       {/* Heavy Order Table */}
-      <div className="bg-white border border-[#254222] shadow-[4px_4px_0px_#cae4c5] overflow-hidden">
+      <div className="bg-[#F2F0EA] border border-[#0D140B] shadow-[4px_4px_0px_#0D140B] overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse whitespace-nowrap">
             <thead>
-              <tr className="border-b border-[#254222] text-[10px] uppercase tracking-widest font-mono text-[#254222] bg-[#fcfdfa]">
+              <tr className="border-b border-[#0D140B] text-[10px] uppercase tracking-widest font-mono text-[#0D140B] bg-[#E3E0D8]">
                 <th className="p-5 font-bold">Order ID</th>
                 <th className="p-5 font-bold">Date & Time</th>
                 <th className="p-5 font-bold">Patron</th>
@@ -77,27 +77,27 @@ export default function OrdersPage() {
             </thead>
             <tbody>
               {ORDERS_DB.map((order, i) => (
-                <tr key={order.id} className="border-b border-[#cae4c5]/40 hover:bg-[#cae4c5]/5 transition-colors group">
-                  <td className="p-5 text-sm font-mono text-[#254222] font-semibold flex items-center gap-3">
-                     <Package size={16} className="text-[#cae4c5] group-hover:text-[#82B34B] transition-colors" />
+                <tr key={order.id} className="border-b border-[#0D140B] hover:bg-[#00C725]/5 transition-colors group">
+                  <td className="p-5 text-sm font-mono text-[#0D140B] font-semibold flex items-center gap-3">
+                     <Package size={16} className="text-[#3B5238] group-hover:text-[#00C725] transition-colors" />
                      {order.id}
                   </td>
-                  <td className="p-5 text-xs text-[#4F684C] font-mono">{order.date}</td>
-                  <td className="p-5 text-sm font-editorial-serif text-[#254222]">{order.customer}</td>
-                  <td className="p-5 text-xs text-[#254222]"><span className="bg-[#cae4c5]/20 px-2 py-1 border border-[#cae4c5]/50">{order.supplier}</span></td>
-                  <td className="p-5 text-sm font-mono text-[#4F684C] text-center">{order.items}</td>
-                  <td className="p-5 text-sm font-bold text-[#82B34B]">{order.value}</td>
+                  <td className="p-5 text-xs text-[#3B5238] font-mono">{order.date}</td>
+                  <td className="p-5 text-sm font-editorial-serif text-[#0D140B]">{order.customer}</td>
+                  <td className="p-5 text-xs text-[#0D140B]"><span className="bg-[#00C725]/20 px-2 py-1 border border-[#0D140B]">{order.supplier}</span></td>
+                  <td className="p-5 text-sm font-mono text-[#3B5238] text-center">{order.items}</td>
+                  <td className="p-5 text-sm font-bold text-[#00C725]">{order.value}</td>
                   <td className="p-5 text-[10px] uppercase tracking-widest font-bold">
-                     <span className={order.payment === 'Paid' ? 'text-[#82B34B]' : order.payment === 'Refunded' ? 'text-[#e55c5c]' : 'text-[#e4a11b]'}>
+                     <span className={order.payment === 'Paid' ? 'text-[#00C725]' : order.payment === 'Refunded' ? 'text-[#e55c5c]' : 'text-[#e4a11b]'}>
                         {order.payment}
                      </span>
                   </td>
                   <td className="p-5 text-right">
                     <span className={`inline-flex items-center px-3 py-1 border text-[10px] uppercase tracking-widest ${
-                      order.status === 'Delivered' ? 'border-[#82B34B] text-[#82B34B] bg-[#82B34B]/10' : 
+                      order.status === 'Delivered' ? 'border-[#00C725] text-[#00C725] bg-[#00C725]/10' : 
                       order.status === 'Processing' ? 'border-[#e4a11b] text-[#e4a11b] bg-[#e4a11b]/10' : 
                       order.status === 'Cancelled' ? 'border-[#e55c5c] text-[#e55c5c] bg-[#e55c5c]/10' :
-                      'border-[#4F684C] text-[#4F684C] bg-[#cae4c5]/10'
+                      'border-[#3B5238] text-[#3B5238] bg-[#00C725]/10'
                     }`}>
                       {order.status}
                     </span>

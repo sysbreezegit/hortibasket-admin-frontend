@@ -20,7 +20,7 @@ const OFFERS = [
 
 const OfferCards = () => {
   return (
-    <section className="py-12 bg-white">
+    <section className="py-12 bg-[#F2F0EA]">
       <MaxWidthWrapper className="max-w-none w-full px-4 md:px-8 lg:px-12 xl:px-16">
         <h2 className="text-2xl md:text-4xl font-black text-[#224229] mb-8">Exclusive Green Deals</h2>
 

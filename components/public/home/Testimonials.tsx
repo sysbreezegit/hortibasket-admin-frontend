@@ -20,7 +20,7 @@ function Testimonials() {
   ]
 
   return (
-    <div className="py-20 px-5 bg-white">
+    <div className="py-20 px-5 bg-[#F2F0EA]">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-16">

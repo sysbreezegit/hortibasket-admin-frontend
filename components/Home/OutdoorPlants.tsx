@@ -167,7 +167,7 @@ const OutdoorPlants = () => {
                             href="/category/outdoor"
                             className="min-w-[318px] h-[464px] flex flex-col items-center justify-center group p-8 border-2 border-dashed border-gray-100 hover:border-[#89C839] rounded-2xl transition-all duration-200 bg-gray-50/50"
                         >
-                            <div className="w-20 h-20 rounded-full bg-white flex items-center justify-center shadow-sm group-hover:shadow-md group-hover:scale-110 transition-all mb-4">
+                            <div className="w-20 h-20 rounded-full bg-[#F2F0EA] flex items-center justify-center shadow-sm group-hover:shadow-md group-hover:scale-110 transition-all mb-4">
                                 <ArrowRight size={32} className="text-gray-400 group-hover:text-[#89C839] transition-colors" />
                             </div>
                             <span className="font-sans font-black text-xl text-gray-600 group-hover:text-[#89C839] transition-colors">

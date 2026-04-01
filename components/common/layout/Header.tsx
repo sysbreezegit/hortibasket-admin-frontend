@@ -52,8 +52,8 @@ const Header = () => {
         className={cn(
           "w-full transition-all duration-300 border-b",
           scrolled
-            ? "bg-white/95 backdrop-blur-md py-2 shadow-sm border-gray-100"
-            : "bg-white py-4 border-transparent"
+            ? "bg-[#F2F0EA]/95 backdrop-blur-md py-2 shadow-sm border-gray-100"
+            : "bg-[#F2F0EA] py-4 border-transparent"
         )}
       >
         <MaxWidthWrapper className="max-w-none w-full px-2.5 sm:px-8 md:px-12">

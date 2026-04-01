@@ -34,7 +34,7 @@ const WhyChooseUs = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {FEATURES.map((feature, index) => (
             <div key={index} className="flex flex-col items-center text-center space-y-4">
-              <div className="p-5 bg-white/10 rounded-3xl backdrop-blur-sm border border-white/10 mb-2">
+              <div className="p-5 bg-[#F2F0EA]/10 rounded-3xl backdrop-blur-sm border border-white/10 mb-2">
                 {feature.icon}
               </div>
               <h3 className="text-xl font-bold">{feature.title}</h3>

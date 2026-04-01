@@ -51,7 +51,7 @@ const PromoteCategories = () => {
     ]
 
     return (
-        <section className="py-20 px-4 md:px-24 bg-white">
+        <section className="py-20 px-4 md:px-24 bg-[#F2F0EA]">
             <div className=" mx-auto">
                 {/* Header */}
                 <div className="text-center mb-16">
@@ -66,7 +66,7 @@ const PromoteCategories = () => {
                     {categories.map((category) => (
                         <div
                             key={category.id}
-                            className="bg-white rounded-xl  border-gray-100 overflow-hidden hover:shadow-md transition-all duration-200 text-center w-[252px]"
+                            className="bg-[#F2F0EA] rounded-xl  border-gray-100 overflow-hidden hover:shadow-md transition-all duration-200 text-center w-[252px]"
                         >
                             {/* Image */}
                             <div className="relative w-full h-[250px] bg-gray-50">
@@ -78,7 +78,7 @@ const PromoteCategories = () => {
 
                                 {/* Category Name Overlay */}
                                 
-                                <div className="w-full mx-3 absolute bottom-[15px] left-1/2 -translate-x-1/2 bg-white text-gray-800 text-sm font-medium px-5 py-1.5 rounded-sm shadow-sm border border-gray-200">
+                                <div className="w-full mx-3 absolute bottom-[15px] left-1/2 -translate-x-1/2 bg-[#F2F0EA] text-gray-800 text-sm font-medium px-5 py-1.5 rounded-sm shadow-sm border border-gray-200">
                                     {category.name}
                                 </div>
                             </div>

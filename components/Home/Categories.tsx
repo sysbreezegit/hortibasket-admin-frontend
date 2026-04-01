@@ -76,7 +76,7 @@ const itemVariants: Variants = {
 
 const Categories = () => {
   return (
-    <section className="py-20 bg-white">
+    <section className="py-20 bg-[#F2F0EA]">
       <MaxWidthWrapper className="max-w-none w-full px-2 md:px-8 lg:px-12 xl:px-16">
         <div className="flex flex-row justify-between items-center mb-12 px-2 sm:px-0">
           <div>

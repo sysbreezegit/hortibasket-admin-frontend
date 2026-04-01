@@ -18,7 +18,7 @@ const PromoBanner = () => {
           </div>
 
           <div className="relative z-10 px-10 md:px-20 space-y-8 max-w-2xl">
-            <h4 className="text-[#1a3320] font-black uppercase tracking-[0.4em] text-sm bg-white/30 backdrop-blur-sm inline-block px-4 py-2 rounded-xl">
+            <h4 className="text-[#1a3320] font-black uppercase tracking-[0.4em] text-sm bg-[#F2F0EA]/30 backdrop-blur-sm inline-block px-4 py-2 rounded-xl">
               Limited Edition Mix
             </h4>
             <h2 className="text-4xl md:text-7xl font-black text-[#1a3320] leading-tight">

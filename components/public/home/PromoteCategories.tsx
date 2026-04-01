@@ -44,7 +44,7 @@ function PromoteCategories() {
   ]
 
   return (
-    <div className="py-20 px-5 bg-white">
+    <div className="py-20 px-5 bg-[#F2F0EA]">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
@@ -67,7 +67,7 @@ function PromoteCategories() {
                   alt={category.name}
                   className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
                 />
-                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 w-[90%] bg-white py-2.5 rounded-lg shadow-sm text-center">
+                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 w-[90%] bg-[#F2F0EA] py-2.5 rounded-lg shadow-sm text-center">
                   <span className="text-gray-800 font-medium text-sm">
                     {category.name}
                   </span>

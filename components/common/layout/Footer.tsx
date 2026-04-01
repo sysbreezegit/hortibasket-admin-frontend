@@ -20,7 +20,7 @@ const Footer = () => {
               <input
                 type="email"
                 placeholder="Enter your email address"
-                className="flex-1 bg-white/5 border border-white/10 rounded-xl sm:rounded-full py-3.5 px-6 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-[#89C839] focus:bg-white/10 transition-all"
+                className="flex-1 bg-[#F2F0EA]/5 border border-white/10 rounded-xl sm:rounded-full py-3.5 px-6 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-[#89C839] focus:bg-[#F2F0EA]/10 transition-all"
               />
               <button className="bg-[#89C839] hover:bg-[#74a930] text-[#1a3320] font-bold py-3.5 px-8 rounded-xl sm:rounded-full transition-all text-sm shrink-0 shadow-lg shadow-[#89C839]/10">
                 Subscribe
@@ -33,7 +33,7 @@ const Footer = () => {
           {/* Brand Info */}
           <div className="space-y-6">
             <Link href="/" className="flex items-center gap-2 group">
-              <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center text-[#224229]">
+              <div className="w-10 h-10 bg-[#F2F0EA] rounded-lg flex items-center justify-center text-[#224229]">
                 <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
                   <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.3-.25.64-.25 1.01 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2zM12 2C9.5 2 7 4 7 7s5 8 5 8 5-5 5-8-2.5-5-5-5zm0 7c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z" />
                 </svg>

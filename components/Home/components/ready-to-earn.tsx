@@ -53,13 +53,13 @@ export default function ReadyToEarn() {
                         <div className="space-y-4">
                             {features.map((feature, index) => (
                                 <div key={index} className=" flex items-center gap-3">
-                                    <Check className="w-10 h-10 p-2 bg-white/50 rounded-full text-white flex-shrink-0 mt-0.5" />
+                                    <Check className="w-10 h-10 p-2 bg-[#F2F0EA]/50 rounded-full text-white flex-shrink-0 mt-0.5" />
                                     <span className="text-sm md:text-2xl text-white">{feature}</span>
                                 </div>
                             ))}
                         </div>
 
-                        <div className="mt-8 bg-white/30 p-5 rounded-md">
+                        <div className="mt-8 bg-[#F2F0EA]/30 p-5 rounded-md">
                             <p className="text-2xl text-red-100 mb-2">Average time to first sale</p>
                             <p className="text-3xl md:text-4xl font-bold text-white">7 Days</p>
                         </div>
@@ -67,7 +67,7 @@ export default function ReadyToEarn() {
 
                     {/* Right Section - Form */}
                     <div className="flex justify-center">
-                        <div className="bg-white w-[508px] h-[702px] rounded-lg p-6 md:p-16 items-center justify-center">
+                        <div className="bg-[#F2F0EA] w-[508px] h-[702px] rounded-lg p-6 md:p-16 items-center justify-center">
                             <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-2">Create Your Account</h3>
                             <p className="text-sm text-gray-600 mb-6">Start earning in less than 5 minutes</p>
 

@@ -335,7 +335,7 @@ export function CustomDataTable<TData, TValue>({
     globalFilter
 
   return (
-    <div className="w-full bg-white p-1 px-4 rounded-md">
+    <div className="w-full bg-[#F2F0EA] p-1 px-4 rounded-md">
       {/* Toolbar */}
       <div className="flex items-center gap-2 py-4">
         {!hideSearch && (

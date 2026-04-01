@@ -117,7 +117,7 @@ export default function Testimonials() {
   const translateXValue = -(currentIndex * cardAndGapWidth * cardsPerView)
 
   return (
-    <section className="py-12 md:py-16 bg-white" id="success-stories">
+    <section className="py-12 md:py-16 bg-[#F2F0EA]" id="success-stories">
       <div className=" mx-auto px-4 md:px-24">
         <h2 className="text-3xl md:text-4xl font-semibold text-center mb-12 text-gray-900">What Our Users Say</h2>
 
@@ -142,7 +142,7 @@ export default function Testimonials() {
           <div className="flex justify-center gap-2">
             <Button
               onClick={handlePrev}
-              className="w-10 h-10 bg-white border border-gray-300 rounded hover:bg-gray-100"
+              className="w-10 h-10 bg-[#F2F0EA] border border-gray-300 rounded hover:bg-gray-100"
               disabled={dummyTestimonials.length <= cardsPerView}
             >
               <ArrowLeft className="w-5 h-5 text-gray-700" />
@@ -150,7 +150,7 @@ export default function Testimonials() {
             </Button>
             <Button
               onClick={handleNext}
-              className="w-10 h-10 bg-white border border-gray-300 rounded hover:bg-gray-100"
+              className="w-10 h-10 bg-[#F2F0EA] border border-gray-300 rounded hover:bg-gray-100"
               disabled={dummyTestimonials.length <= cardsPerView}
             >
               <ArrowRight className="w-5 h-5 text-gray-700" />

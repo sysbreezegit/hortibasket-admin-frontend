@@ -76,13 +76,13 @@ const Hero = () => {
           {/* Controls */}
           <button
             onClick={prevSlide}
-            className="absolute left-4 top-4 z-20 p-2 rounded-full bg-white/20 hover:bg-white/40 text-white backdrop-blur-sm transition-all"
+            className="absolute left-4 top-4 z-20 p-2 rounded-full bg-[#F2F0EA]/20 hover:bg-[#F2F0EA]/40 text-white backdrop-blur-sm transition-all"
           >
             <ChevronLeft size={24} />
           </button>
           <button
             onClick={nextSlide}
-            className="absolute right-4 top-4 z-20 p-2 rounded-full bg-white/20 hover:bg-white/40 text-white backdrop-blur-sm transition-all"
+            className="absolute right-4 top-4 z-20 p-2 rounded-full bg-[#F2F0EA]/20 hover:bg-[#F2F0EA]/40 text-white backdrop-blur-sm transition-all"
           >
             <ChevronRight size={24} />
           </button>
@@ -93,7 +93,7 @@ const Hero = () => {
               <button
                 key={index}
                 onClick={() => setCurrentSlide(index)}
-                className={`w-3 h-3 rounded-full transition-all ${index === currentSlide ? "bg-[#89C839] w-8" : "bg-white/50"
+                className={`w-3 h-3 rounded-full transition-all ${index === currentSlide ? "bg-[#89C839] w-8" : "bg-[#F2F0EA]/50"
                   }`}
               />
             ))}

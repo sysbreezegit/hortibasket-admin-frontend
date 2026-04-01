@@ -15,7 +15,7 @@ export function MobileSearchInput({ search, onSearchChange }: MobileSearchInputP
         placeholder="Search orders..."
         value={search}
         onChange={(e) => onSearchChange(e.target.value)}
-        className="pl-9 bg-white"
+        className="pl-9 bg-[#F2F0EA]"
       />
     </div>
   );
@@ -29,7 +29,7 @@ interface MobilePaginationButtonsProps {
 
 export function MobilePaginationButtons({ page, totalPages, onPageChange }: MobilePaginationButtonsProps) {
   return (
-    <div className="flex items-center justify-between bg-white p-3 rounded-xl border border-gray-100 shadow-sm">
+    <div className="flex items-center justify-between bg-[#F2F0EA] p-3 rounded-xl border border-gray-100 shadow-sm">
       <Button
         variant="outline"
         size="sm"

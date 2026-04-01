@@ -12,8 +12,8 @@ const TYPES = [
     description: "Highly sought-after collector plants with complex variegation patterns.",
     count: 42,
     icon: <Leaf strokeWidth={1.5} />,
-    color: "#254222",
-    bgColor: "#cae4c5/20",
+    color: "#0D140B",
+    bgColor: "#00C725/20",
   },
   {
     id: "TYP-002",
@@ -21,8 +21,8 @@ const TYPES = [
     description: "Large structural plants designed to anchor a room's aesthetic.",
     count: 18,
     icon: <Box strokeWidth={1.5} />,
-    color: "#4F684C",
-    bgColor: "#4F684C/10",
+    color: "#3B5238",
+    bgColor: "#3B5238/10",
   },
   {
     id: "TYP-003",
@@ -39,8 +39,8 @@ const TYPES = [
     description: "Water-rooted flora requiring specialized submerged environments.",
     count: 12,
     icon: <Droplets strokeWidth={1.5} />,
-    color: "#82B34B",
-    bgColor: "#82B34B/10",
+    color: "#00C725",
+    bgColor: "#00C725/10",
   },
   {
     id: "TYP-005",
@@ -70,7 +70,7 @@ export default function ProductTypesPage() {
   const [search, setSearch] = useState("");
 
   return (
-    <div className="min-h-full bg-[#fcfdfa] p-8 lg:p-12 font-sans selection:bg-[#cae4c5] selection:text-[#254222]">
+    <div className="min-h-full bg-[#E3E0D8] p-8 lg:p-12 font-sans selection:bg-[#00C725] selection:text-[#0D140B]">
       {/* Header Section */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}
@@ -79,19 +79,19 @@ export default function ProductTypesPage() {
         className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6"
       >
         <div>
-          <p className="text-[#82B34B] font-mono text-xs uppercase tracking-[0.2em] mb-2 font-semibold">
+          <p className="text-[#00C725] font-mono text-xs uppercase tracking-[0.2em] mb-2 font-semibold">
             Taxonomy Management
           </p>
-          <h1 className="text-4xl md:text-5xl font-editorial-serif text-[#254222] tracking-tight leading-tight">
+          <h1 className="text-4xl md:text-5xl font-editorial-serif text-[#0D140B] tracking-tight leading-tight">
             Specimen Classifications
           </h1>
-          <p className="text-[#4F684C] mt-2 text-sm md:text-base max-w-xl pr-4">
+          <p className="text-[#3B5238] mt-2 text-sm md:text-base max-w-xl pr-4">
             Define and organize the primary biological types used to categorize your inventory.
           </p>
         </div>
 
-        <button className="group relative inline-flex items-center justify-center px-6 py-3 bg-[#254222] text-[#fcfdfa] overflow-hidden rounded-none shadow-[4px_4px_0px_#cae4c5] hover:shadow-[2px_2px_0px_#cae4c5] hover:translate-x-[2px] hover:translate-y-[2px] transition-all duration-300">
-          <div className="absolute inset-0 w-0 bg-[#82B34B] transition-all duration-300 ease-out group-hover:w-full"></div>
+        <button className="group relative inline-flex items-center justify-center px-6 py-3 bg-[#0D140B] text-[#E3E0D8] overflow-hidden rounded-none shadow-[4px_4px_0px_#0D140B] hover:shadow-[2px_2px_0px_#0D140B] hover:translate-x-[2px] hover:translate-y-[2px] transition-all duration-300">
+          <div className="absolute inset-0 w-0 bg-[#00C725] transition-all duration-300 ease-out group-hover:w-full"></div>
           <span className="relative flex items-center gap-2 font-medium text-sm tracking-wide">
             <Plus size={16} strokeWidth={2.5} />
             New Classification
@@ -110,34 +110,34 @@ export default function ProductTypesPage() {
           <motion.div
             key={type.id}
             variants={cardVariants}
-            className="group block relative bg-white border border-[#cae4c5]/60 hover:border-[#cae4c5] p-8 transition-all duration-300 hover:shadow-[0_10px_40px_rgba(37,66,34,0.06)] overflow-hidden cursor-pointer flex flex-col min-h-[300px]"
+            className="group block relative bg-[#F2F0EA] border border-[#0D140B] hover:border-[#0D140B] p-8 transition-all duration-300 hover:shadow-[0_10px_40px_rgba(37,66,34,0.06)] overflow-hidden cursor-pointer flex flex-col min-h-[300px]"
           >
             {/* Decorative Background Elements */}
             <div className="absolute -right-6 -top-6 w-32 h-32 rounded-full blur-3xl opacity-50 group-hover:opacity-100 transition-opacity duration-500" style={{ backgroundColor: type.color }} />
             
             <div className="relative z-10 flex flex-col h-full flex-1">
               <div className="flex justify-between items-start mb-6">
-                <div className="p-3 bg-white border border-[#cae4c5]/50 shadow-sm rounded-sm text-[#254222]">
+                <div className="p-3 bg-[#F2F0EA] border border-[#0D140B] shadow-sm rounded-sm text-[#0D140B]">
                   {type.icon}
                 </div>
-                <span className="text-[10px] font-mono uppercase tracking-widest text-[#4F684C]">
+                <span className="text-[10px] font-mono uppercase tracking-widest text-[#3B5238]">
                   {type.id}
                 </span>
               </div>
               
-              <h3 className="text-2xl font-editorial-serif text-[#254222] mb-3 group-hover:text-[#82B34B] transition-colors">
+              <h3 className="text-2xl font-editorial-serif text-[#0D140B] mb-3 group-hover:text-[#00C725] transition-colors">
                 {type.name}
               </h3>
               
-              <p className="text-[#4F684C] text-sm leading-relaxed mb-8 grow">
+              <p className="text-[#3B5238] text-sm leading-relaxed mb-8 grow">
                 {type.description}
               </p>
               
-              <div className="pt-4 border-t border-[#cae4c5]/40 flex items-center justify-between mt-auto">
-                <span className="text-xs font-bold uppercase tracking-widest text-[#254222]">
+              <div className="pt-4 border-t border-[#0D140B] flex items-center justify-between mt-auto">
+                <span className="text-xs font-bold uppercase tracking-widest text-[#0D140B]">
                   Inventory
                 </span>
-                <span className="text-sm font-mono text-[#82B34B] bg-[#82B34B]/10 px-2 py-1">
+                <span className="text-sm font-mono text-[#00C725] bg-[#00C725]/10 px-2 py-1">
                   {type.count} specimens
                 </span>
               </div>

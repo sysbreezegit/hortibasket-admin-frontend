@@ -63,7 +63,7 @@ export default function Footer() {
             <h4 className="text-lg font-semibold mb-3">Newsletter</h4>
             <p className="text-sm text-gray-400 mb-4">Subscribe to get updates on new arrivals and promotions</p>
 
-            <form onSubmit={handleSubscribe} className="flex items-center bg-white rounded-md overflow-hidden">
+            <form onSubmit={handleSubscribe} className="flex items-center bg-[#F2F0EA] rounded-md overflow-hidden">
               <Mail className="text-gray-500 ml-3" size={18} />
               <input
                 type="email"

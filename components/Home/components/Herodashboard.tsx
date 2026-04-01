@@ -69,7 +69,7 @@ const EarningsDashboard = () => {
     }
 
     return (
-        <Card className="w-full shadow-xl bg-white font-sans">
+        <Card className="w-full shadow-xl bg-[#F2F0EA] font-sans">
             <CardHeader className="py-4">
                 <div className="flex justify-between items-center">
                     <CardTitle className="text-2xl font-medium">Your Earnings Dashboard</CardTitle>

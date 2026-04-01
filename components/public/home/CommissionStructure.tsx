@@ -58,7 +58,7 @@ function CommissionStructure() {
           {tiers.map((tier, index) => (
             <div 
               key={index} 
-              className="bg-white rounded-2xl p-8 border border-gray-200 hover:border-red-200 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 flex flex-col"
+              className="bg-[#F2F0EA] rounded-2xl p-8 border border-gray-200 hover:border-red-200 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 flex flex-col"
             >
               <div className="mb-6">
                 <h3 className="text-3xl font-medium text-gray-900 mb-2">{tier.name}</h3>

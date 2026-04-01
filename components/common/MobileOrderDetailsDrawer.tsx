@@ -46,8 +46,8 @@ export function MobileOrderDetailsDrawer({ isOpen, onClose, order }: MobileOrder
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-md w-[90%] rounded-2xl p-0 gap-0 overflow-hidden border-0 shadow-xl bg-white">
-        <DialogHeader className="px-5 py-4 border-b border-gray-100 bg-white sticky top-0 z-10">
+      <DialogContent className="sm:max-w-md w-[90%] rounded-2xl p-0 gap-0 overflow-hidden border-0 shadow-xl bg-[#F2F0EA]">
+        <DialogHeader className="px-5 py-4 border-b border-gray-100 bg-[#F2F0EA] sticky top-0 z-10">
           <div className="flex items-center justify-between">
             <DialogTitle className="text-base font-bold text-gray-900">
                Order Details

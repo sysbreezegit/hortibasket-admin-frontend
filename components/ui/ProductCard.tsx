@@ -52,7 +52,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   return (
     <div onClick={handleCardClick} className="contents cursor-pointer group">
       {/* MOBILE */}
-      <div className="md:hidden relative bg-white rounded-lg hover:shadow-md w-full hover:z-30 border border-gray-100 overflow-hidden">
+      <div className="md:hidden relative bg-[#F2F0EA] rounded-lg hover:shadow-md w-full hover:z-30 border border-gray-100 overflow-hidden">
         {discountPercent > 0 && (
           <div className="absolute top-2 left-2 z-20">
             <div className="bg-[#89C839] px-2 py-1 rounded-full text-[10px] font-semibold text-[#1a3320] shadow">
@@ -66,7 +66,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           onClick={(e) => {
             e.stopPropagation();
           }}
-          className="absolute top-1 right-1 z-20 bg-white rounded-full p-1 shadow hover:bg-gray-200"
+          className="absolute top-1 right-1 z-20 bg-[#F2F0EA] rounded-full p-1 shadow hover:bg-gray-200"
         >
           <Heart size={12} className="text-gray-700" />
         </button>
@@ -79,7 +79,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             className="w-full h-full object-cover"
           />
 
-          <div className="absolute bottom-1 right-1 flex items-center gap-1 px-2 py-0.5 rounded-md shadow bg-white/90">
+          <div className="absolute bottom-1 right-1 flex items-center gap-1 px-2 py-0.5 rounded-md shadow bg-[#F2F0EA]/90">
             <Star size={12} className="text-[#89C839] fill-[#89C839]" />
             <span className="text-[10px] font-medium text-[#303030]">
               {product?.averageRating || "4.5"}
@@ -128,7 +128,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       </div>
 
       {/* DESKTOP */}
-      <div className="hidden md:flex flex-col relative bg-white rounded-lg hover:shadow-md w-[318px] h-[464px] hover:z-30 transition-all duration-200 border border-gray-100 overflow-hidden">
+      <div className="hidden md:flex flex-col relative bg-[#F2F0EA] rounded-lg hover:shadow-md w-[318px] h-[464px] hover:z-30 transition-all duration-200 border border-gray-100 overflow-hidden">
         {discountPercent > 0 && (
           <div className="absolute top-2 left-2 z-10">
             <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-[#89C839] text-[#1a3320] border border-[#74a930]">
@@ -142,7 +142,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           onClick={(e) => {
             e.stopPropagation();
           }}
-          className="absolute top-2 right-2 z-20 bg-white rounded-full p-1.5 shadow hover:bg-gray-200"
+          className="absolute top-2 right-2 z-20 bg-[#F2F0EA] rounded-full p-1.5 shadow hover:bg-gray-200"
         >
           <Heart size={14} className="text-gray-700" />
         </button>
@@ -155,7 +155,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
           />
 
-          <div className="absolute bottom-2 right-2 flex items-center gap-1 px-2 py-0.5 rounded-md shadow bg-white/90">
+          <div className="absolute bottom-2 right-2 flex items-center gap-1 px-2 py-0.5 rounded-md shadow bg-[#F2F0EA]/90">
             <Star size={14} className="text-[#89C839] fill-[#89C839]" />
             <span className="text-sm font-medium text-[#303030]">
               {product?.averageRating ? product?.averageRating : "4.5"}

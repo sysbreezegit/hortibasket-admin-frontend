@@ -26,7 +26,7 @@ export default function Banner() {
         </div>
 
         {/* Right Content - Dashboard Card */}
-        <div className="bg-white rounded-xl md:rounded-2xl shadow-xl p-4 md:p-6 border border-gray-200">
+        <div className="bg-[#F2F0EA] rounded-xl md:rounded-2xl shadow-xl p-4 md:p-6 border border-gray-200">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-4 md:mb-6">
             <h2 className="text-lg md:text-xl font-semibold text-gray-900">Your Earnings Dashboard</h2>
             <button className="text-xs md:text-sm border border-gray-300 px-3 md:px-4 py-1.5 md:py-2 rounded-md hover:bg-gray-50 whitespace-nowrap">

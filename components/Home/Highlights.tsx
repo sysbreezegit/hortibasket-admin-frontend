@@ -128,14 +128,14 @@ const Highlights = () => {
             {isCarousel && (
               <div className="hidden md:flex items-center gap-2">
                 <button
-                  className="bg-white hover:bg-gray-200 border p-2 rounded transition-colors"
+                  className="bg-[#F2F0EA] hover:bg-gray-200 border p-2 rounded transition-colors"
                   onClick={prevSlide}
                   aria-label="Previous slide"
                 >
                   <ArrowLeft />
                 </button>
                 <button
-                  className="bg-white hover:bg-gray-200 border p-2 rounded transition-colors"
+                  className="bg-[#F2F0EA] hover:bg-gray-200 border p-2 rounded transition-colors"
                   onClick={nextSlide}
                   aria-label="Next slide"
                 >
@@ -171,7 +171,7 @@ const Highlights = () => {
                           setIsListMuted((m) => !m);
                         }}
                         aria-label={isListMuted ? "Unmute video" : "Mute video"}
-                        className="absolute right-3 top-1/2 -translate-y-1/2 z-10 rounded-full bg-white/90 hover:bg-white transition-colors p-2 shadow md:hidden"
+                        className="absolute right-3 top-1/2 -translate-y-1/2 z-10 rounded-full bg-[#F2F0EA]/90 hover:bg-[#F2F0EA] transition-colors p-2 shadow md:hidden"
                       >
                         {isListMuted ? (
                           <VolumeX className="w-5 h-5 text-gray-900" />
@@ -180,7 +180,7 @@ const Highlights = () => {
                         )}
                       </button>
 
-                      <div className="absolute bottom-2 left-2 right-2 md:bottom-4 md:left-4 md:right-4 backdrop-blur-md p-3 md:p-4 rounded-lg shadow-md z-10 bg-white/80 group-hover:bg-white/90 transition-colors">
+                      <div className="absolute bottom-2 left-2 right-2 md:bottom-4 md:left-4 md:right-4 backdrop-blur-md p-3 md:p-4 rounded-lg shadow-md z-10 bg-[#F2F0EA]/80 group-hover:bg-[#F2F0EA]/90 transition-colors">
                         <h3 className="text-sm md:text-base lg:text-lg font-semibold text-gray-800 mb-1 md:mb-2 line-clamp-1">
                           {highlight.product.productName}
                         </h3>
@@ -236,7 +236,7 @@ const Highlights = () => {
             <button
               onClick={closeModal}
               aria-label="Close modal"
-              className="absolute top-3 right-3 z-50 rounded-full bg-white text-black hover:bg-gray-100 transition-colors p-2 shadow-md"
+              className="absolute top-3 right-3 z-50 rounded-full bg-[#F2F0EA] text-black hover:bg-gray-100 transition-colors p-2 shadow-md"
             >
               <X className="w-5 h-5" />
             </button>
@@ -257,7 +257,7 @@ const Highlights = () => {
                 <button
                   onClick={() => setIsModalMuted((m) => !m)}
                   aria-label={isModalMuted ? "Unmute video" : "Mute video"}
-                  className="absolute right-5 top-1/2 -translate-y-1/2 z-20 rounded-full bg-white/90 hover:bg-white transition-colors p-3 shadow"
+                  className="absolute right-5 top-1/2 -translate-y-1/2 z-20 rounded-full bg-[#F2F0EA]/90 hover:bg-[#F2F0EA] transition-colors p-3 shadow"
                 >
                   {isModalMuted ? (
                     <VolumeX className="w-6 h-6 text-gray-900" />
@@ -268,7 +268,7 @@ const Highlights = () => {
               </div>
 
               {/* Right product panel (desktop) */}
-              <aside className="hidden md:flex flex-col h-full bg-white p-6 gap-6">
+              <aside className="hidden md:flex flex-col h-full bg-[#F2F0EA] p-6 gap-6">
                 <div className="flex flex-col gap-4">
                   {selectedHighlight.product.productImages?.[0] && (
                     <img
@@ -308,7 +308,7 @@ const Highlights = () => {
 
             {/* Mobile bottom sheet (inside overlay) */}
             <div className="md:hidden pointer-events-none fixed bottom-0 left-0 right-0">
-              <div className="pointer-events-auto mx-3 mb-3 rounded-xl bg-white shadow-2xl p-3 flex items-center gap-3">
+              <div className="pointer-events-auto mx-3 mb-3 rounded-xl bg-[#F2F0EA] shadow-2xl p-3 flex items-center gap-3">
                 {selectedHighlight.product.productImages?.[0] && (
                   <img
                     src={selectedHighlight.product.productImages[0]}

@@ -244,7 +244,7 @@ const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
                     <button
                         onClick={() => setIsOpen(false)}
                         aria-label="Close menu"
-                        className="flex items-center justify-center w-8 h-8 rounded-full transition-colors hover:bg-white/20"
+                        className="flex items-center justify-center w-8 h-8 rounded-full transition-colors hover:bg-[#F2F0EA]/20"
                         style={{ background: "rgba(255,255,255,0.1)" }}
                     >
                         <svg width="14" height="14" viewBox="0 0 14 14" fill="none">

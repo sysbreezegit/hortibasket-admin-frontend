@@ -135,13 +135,13 @@ export function LayoutWrapper({ children }: LayoutWrapperProps) {
           isCollapsed ? 'lg:ml-[80px]' : 'lg:ml-[240px]'
         )}
       >
-        <header className='bg-white border-b border-[#cae4c5]/60 px-6 py-3 relative z-30 shadow-[0_5px_30px_rgba(37,66,34,0.03)]'>
+        <header className='bg-[#F2F0EA] border-b border-[#0D140B] px-6 py-3 relative z-30 shadow-[0_5px_30px_rgba(37,66,34,0.03)]'>
           <div className='flex items-center justify-between'>
             <div className='flex items-center gap-4'>
               <Button
                 variant='ghost'
                 size='sm'
-                className='lg:hidden text-[#4F684C] hover:text-[#254222]'
+                className='lg:hidden text-[#3B5238] hover:text-[#0D140B]'
                 onClick={() => setSidebarOpen(true)}
               >
                 <Menu className='h-5 w-5' />
@@ -153,7 +153,7 @@ export function LayoutWrapper({ children }: LayoutWrapperProps) {
                   variant='ghost'
                   size='icon'
                   onClick={() => router.back()}
-                  className='h-[36px] w-[36px] flex items-center justify-center shrink-0 rounded-full bg-[#fcfdfa] hover:bg-[#cae4c5]/20 text-[#4F684C]/60 hover:text-[#254222] transition-colors border border-[#cae4c5]/30'
+                  className='h-[36px] w-[36px] flex items-center justify-center shrink-0 rounded-full bg-[#E3E0D8] hover:bg-[#00C725]/20 text-[#3B5238]/60 hover:text-[#0D140B] transition-colors border border-[#0D140B]'
                   title='Go Back'
                 >
                   <ArrowLeft className='h-[18px] w-[18px] stroke-[1.5px]' />
@@ -161,37 +161,37 @@ export function LayoutWrapper({ children }: LayoutWrapperProps) {
                 {currentPage.parentName ? (
                   <>
                     {ParentIcon && (
-                      <ParentIcon className='h-[16px] w-[16px] text-[#4F684C]/60 hidden sm:block stroke-[1.5px]' />
+                      <ParentIcon className='h-[16px] w-[16px] text-[#3B5238]/60 hidden sm:block stroke-[1.5px]' />
                     )}
                     {currentPage.parentHref ? (
-                      <Link href={currentPage.parentHref} className='text-[13px] font-sans font-medium text-[#4F684C] whitespace-nowrap hover:text-[#254222] transition-colors'>
+                      <Link href={currentPage.parentHref} className='text-[13px] font-sans font-medium text-[#3B5238] whitespace-nowrap hover:text-[#0D140B] transition-colors'>
                         {currentPage.parentName}
                       </Link>
                     ) : (
-                      <span className='text-[13px] font-sans font-medium text-[#4F684C] whitespace-nowrap'>
+                      <span className='text-[13px] font-sans font-medium text-[#3B5238] whitespace-nowrap'>
                         {currentPage.parentName}
                       </span>
                     )}
-                    <ChevronRight className="h-[14px] w-[14px] text-[#cae4c5] shrink-0 stroke-[2px]" />
+                    <ChevronRight className="h-[14px] w-[14px] text-[#3B5238] shrink-0 stroke-[2px]" />
                     {currentPage.href ? (
-                      <Link href={currentPage.href} className='text-[14px] font-sans font-semibold text-[#254222] whitespace-nowrap hover:text-[#82B34B] transition-colors'>
+                      <Link href={currentPage.href} className='text-[14px] font-sans font-semibold text-[#0D140B] whitespace-nowrap hover:text-[#00C725] transition-colors'>
                         {currentPage.name}
                       </Link>
                     ) : (
-                      <span className='text-[14px] font-sans font-semibold text-[#254222] whitespace-nowrap'>
+                      <span className='text-[14px] font-sans font-semibold text-[#0D140B] whitespace-nowrap'>
                         {currentPage.name}
                       </span>
                     )}
                   </>
                 ) : (
                   <>
-                    <PageIcon className='h-[18px] w-[18px] text-[#82B34B] hidden sm:block stroke-[2px]' />
+                    <PageIcon className='h-[18px] w-[18px] text-[#00C725] hidden sm:block stroke-[2px]' />
                     {currentPage.href ? (
-                      <Link href={currentPage.href} className='text-[15px] font-sans font-semibold text-[#254222] whitespace-nowrap hover:text-[#82B34B] transition-colors'>
+                      <Link href={currentPage.href} className='text-[15px] font-sans font-semibold text-[#0D140B] whitespace-nowrap hover:text-[#00C725] transition-colors'>
                         {currentPage.name}
                       </Link>
                     ) : (
-                      <span className='text-[15px] font-sans font-semibold text-[#254222] whitespace-nowrap'>
+                      <span className='text-[15px] font-sans font-semibold text-[#0D140B] whitespace-nowrap'>
                         {currentPage.name}
                       </span>
                     )}
@@ -205,36 +205,36 @@ export function LayoutWrapper({ children }: LayoutWrapperProps) {
               <DropdownMenuTrigger asChild>
                 <Button
                   variant='ghost'
-                  className='flex items-center gap-3 h-auto p-1.5 pr-3 hover:bg-[#cae4c5]/20 rounded-full border border-transparent hover:border-[#cae4c5]/50 transition-all duration-300'
+                  className='flex items-center gap-3 h-auto p-1.5 pr-3 hover:bg-[#00C725]/20 rounded-full border border-transparent hover:border-[#0D140B] transition-all duration-300'
                 >
-                  <Avatar className='h-9 w-9 border border-[#cae4c5]'>
+                  <Avatar className='h-9 w-9 border border-[#0D140B]'>
                     <AvatarImage className="grayscale" src={user?.avatar || '/placeholder-avatar.jpg'} />
-                    <AvatarFallback className="bg-[#fcfdfa] text-[#254222] font-editorial-serif">{user?.name?.charAt(0) || 'U'}</AvatarFallback>
+                    <AvatarFallback className="bg-[#E3E0D8] text-[#0D140B] font-editorial-serif">{user?.name?.charAt(0) || 'U'}</AvatarFallback>
                   </Avatar>
                   <div className='hidden sm:block text-left mr-1'>
-                    <p className='text-[13px] font-sans font-semibold text-[#254222] leading-none mb-1'>
+                    <p className='text-[13px] font-sans font-semibold text-[#0D140B] leading-none mb-1'>
                       {user?.name || 'User'}
                     </p>
-                    <p className='text-[11px] font-sans text-[#4F684C] leading-none'>
+                    <p className='text-[11px] font-sans text-[#3B5238] leading-none'>
                       {user?.email || 'user@example.com'}
                     </p>
                   </div>
-                  <ChevronDown className='h-4 w-4 text-[#4F684C]/60' />
+                  <ChevronDown className='h-4 w-4 text-[#3B5238]/60' />
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align='end' className='w-56 bg-white border-[#cae4c5]/60 shadow-[0_10px_40px_rgba(37,66,34,0.08)] rounded-xl overflow-hidden font-sans p-1 z-50'>
-                <DropdownMenuLabel className="text-[10px] uppercase tracking-[0.1em] text-[#4F684C]/60 font-medium px-3 py-2">My Account</DropdownMenuLabel>
-                <DropdownMenuSeparator className="bg-[#cae4c5]/40 mx-2" />
-                <DropdownMenuItem onClick={() => router.push("/profile")} className="text-[#254222] focus:bg-[#cae4c5]/20 focus:text-[#254222] rounded-lg cursor-pointer my-1 text-[13px] font-medium transition-colors">
-                  <User className='mr-2 h-4 w-4 text-[#82B34B]' />
+              <DropdownMenuContent align='end' className='w-56 bg-[#F2F0EA] border-[#0D140B] shadow-[0_10px_40px_rgba(37,66,34,0.08)] rounded-xl overflow-hidden font-sans p-1 z-50'>
+                <DropdownMenuLabel className="text-[10px] uppercase tracking-[0.1em] text-[#3B5238]/60 font-medium px-3 py-2">My Account</DropdownMenuLabel>
+                <DropdownMenuSeparator className="bg-[#00C725]/40 mx-2" />
+                <DropdownMenuItem onClick={() => router.push("/profile")} className="text-[#0D140B] focus:bg-[#00C725]/20 focus:text-[#0D140B] rounded-lg cursor-pointer my-1 text-[13px] font-medium transition-colors">
+                  <User className='mr-2 h-4 w-4 text-[#00C725]' />
                   <span>Profile</span>
                 </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => router.push("/notifications")} className="text-[#254222] focus:bg-[#cae4c5]/20 focus:text-[#254222] rounded-lg cursor-pointer my-1 text-[13px] font-medium transition-colors">
-                  <Bell className='mr-2 h-4 w-4 text-[#82B34B]' />
+                <DropdownMenuItem onClick={() => router.push("/notifications")} className="text-[#0D140B] focus:bg-[#00C725]/20 focus:text-[#0D140B] rounded-lg cursor-pointer my-1 text-[13px] font-medium transition-colors">
+                  <Bell className='mr-2 h-4 w-4 text-[#00C725]' />
                   <span>Notifications</span>
                 </DropdownMenuItem>
 
-                <DropdownMenuSeparator className="bg-[#cae4c5]/40 mx-2" />
+                <DropdownMenuSeparator className="bg-[#00C725]/40 mx-2" />
                 <DropdownMenuItem className='text-[#e55c5c] focus:bg-[#e55c5c]/10 focus:text-[#d44848] rounded-lg cursor-pointer my-1 text-[13px] font-medium transition-colors' onClick={() => {
                   useAuthStore.getState().logout();
                   router.push("/login");
@@ -248,7 +248,7 @@ export function LayoutWrapper({ children }: LayoutWrapperProps) {
         </header>
 
         {/* Page content */}
-        <div className='flex-1 overflow-auto bg-[#fcfdfa]'>
+        <div className='flex-1 overflow-auto bg-[#E3E0D8]'>
 
           {children}
         </div>

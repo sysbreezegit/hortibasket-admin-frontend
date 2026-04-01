@@ -79,7 +79,7 @@ const PhotoGallery = () => {
     }, []);
 
     return (
-        <section className="py-16 bg-white overflow-hidden">
+        <section className="py-16 bg-[#F2F0EA] overflow-hidden">
             <MaxWidthWrapper className="max-w-none w-full px-2 md:px-8 lg:px-12 xl:px-16">
                 <div className="mb-12 px-2">
                     <motion.div

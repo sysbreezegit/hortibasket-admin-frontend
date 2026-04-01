@@ -249,7 +249,7 @@ export const ImageUploadInput = ({
           >
             <div className="flex flex-col items-center justify-center pt-5 pb-6 text-center space-y-2 z-10 p-4">
               <div className={cn(
-                "p-4 rounded-full bg-white shadow-sm ring-1 ring-slate-200 mb-2 group-hover:scale-110 transition-transform duration-200",
+                "p-4 rounded-full bg-[#F2F0EA] shadow-sm ring-1 ring-slate-200 mb-2 group-hover:scale-110 transition-transform duration-200",
                  (isDragOver || isUploading) && "bg-primary/10 text-primary ring-primary/20"
               )}>
                 {isUploading ? (
