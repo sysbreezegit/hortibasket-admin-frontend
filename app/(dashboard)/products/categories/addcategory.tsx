@@ -1,6 +1,4 @@
 
-
-
 "use client";
 
 import React, { useEffect, useState } from "react";
@@ -143,7 +141,7 @@ export default function AddFamilyModal({
           parentId: type === "sub" ? parentId : undefined,
           image,
         });
-      // }
+      
 
       await onSaveComplete();
       handleClose();
