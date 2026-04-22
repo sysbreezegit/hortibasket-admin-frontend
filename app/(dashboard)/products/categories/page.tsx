@@ -12,12 +12,13 @@ type Category = {
   _id: string;
   name: string;
   parentId?: string | null;
-  code?: string;
+  categoryCode?: string;
   description?: string;
   status: "active" | "inactive";
   children?: Category[];
   specimens?: number;
   slug?: string;
+  image?:string;
 };
 
 function StatusBadge({ status }: { status: "active" | "inactive" }) {
@@ -34,6 +35,7 @@ function StatusBadge({ status }: { status: "active" | "inactive" }) {
 
 export default function CategoryManagementPage() {
   const [categories, setCategories] = useState<Category[]>([]);
+  console.log("CATEGORIES DATA:", categories);
   const [expanded, setExpanded] = useState<Record<string, boolean>>({});
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -80,7 +82,7 @@ export default function CategoryManagementPage() {
       _id: category._id,
       name: category.name,
       status: category.status,
-      code: category.code || "",
+      categoryCode: category.categoryCode || "",
       description: category.description || "",
       parentId: null,
     });
@@ -92,7 +94,7 @@ export default function CategoryManagementPage() {
       _id: child._id,
       name: child.name,
       status: child.status,
-      code: child.code || "",
+      categoryCode: child.categoryCode || "",
       description: child.description || "",
       parentId, 
     });
@@ -111,7 +113,7 @@ export default function CategoryManagementPage() {
 formData.append("name", data.name);
 formData.append("type", data.type === "sub" ? "Sub" : "Main");
 
-if (data.code && data.type === "main") {
+if (data.code) {
   formData.append("categoryCode", data.code);
 }
 
@@ -125,6 +127,10 @@ if (data.status) {
 
 if (data.parentId) {
   formData.append("parentId", data.parentId);
+}
+
+if (data.specimens !== undefined) {
+  formData.append("specimens", data.specimens.toString());
 }
 
 if (data.image) {
@@ -208,7 +214,7 @@ if (data.image) {
                   className="flex items-center justify-between p-4 cursor-pointer hover:bg-[#00C725]/10 transition-colors"
                   onClick={() => toggleExpand(category._id)}
                 >
-                  <div className="flex items-center gap-4">
+                  {/* <div className="flex items-center gap-4">
                     <motion.div
                       animate={{ rotate: expanded[category._id] ? 90 : 0 }}
                       transition={{ duration: 0.2 }}
@@ -224,11 +230,40 @@ if (data.image) {
                         /{category.slug || category.name.toLowerCase().replace(/\s+/g, "-")}
                       </p>
                     </div>
+                  </div> */}
+
+                  <div className="flex items-center gap-3">
+                    {/* Image */}
+                    {category.image ? (
+                      <img
+                        src={category.image}
+                        alt={category.name}
+                        className="w-10 h-10 object-cover rounded border border-[#0D140B]"
+                      />
+                    ) : (
+                      <div className="w-10 h-10 flex items-center justify-center border border-[#0D140B] text-xs text-[#3B5238]">
+                        N/A
+                      </div>
+                    )}
+
+                    {/* Name */}
+                    <div>
+                      <h3 className="text-base font-semibold text-[#0D140B] leading-none mb-1">
+                        {category.name}
+                      </h3>
+                      <p className="text-[11px] font-mono text-[#00C725]">
+                        /{category.slug || category.name.toLowerCase().replace(/\s+/g, "-")}
+                      </p>
+                    </div>
                   </div>
 
                   <div className="flex items-center gap-4">
                     <span className="text-xs text-[#3B5238] font-medium hidden sm:block">
-                      {category.specimens || 0} Specimens
+                      {category.children?.reduce(
+                        (sum, child) => sum + Number(child.specimens || 0),
+                        0
+                      ) || 0}{" "}
+                      Specimens
                     </span>
                     <StatusBadge status={category.status} />
                     <div className="flex gap-2" onClick={(e) => e.stopPropagation()}>
@@ -268,12 +303,28 @@ if (data.image) {
                             className="group flex items-center justify-between py-3 border-b border-[#0D140B]/20 last:border-0 relative"
                           >
                             <div className="absolute -left-7 top-1/2 w-6 h-px bg-[#00C725]" />
-                            <div className="flex items-center gap-3">
+                            {/* <div className="flex items-center gap-3">
                               <Hash size={14} className="text-[#00C725]/60" />
                               <span className="text-sm font-medium text-[#3B5238] group-hover:text-[#0D140B] transition-colors">
                                 {child.name}
                               </span>
-                            </div>
+                            </div> */}
+
+                            <div className="flex items-center gap-3">
+                            {child.image ? (
+                              <img
+                                src={child.image}
+                                alt={child.name}
+                                className="w-8 h-8 object-cover rounded border border-[#0D140B]"
+                              />
+                            ) : (
+                              <Hash size={14} className="text-[#00C725]/60" />
+                            )}
+
+                            <span className="text-sm font-medium text-[#3B5238] group-hover:text-[#0D140B] transition-colors">
+                              {child.name}
+                            </span>
+                          </div>
                             <div className="flex items-center gap-3">
                               <span className="text-[11px] font-mono text-[#3B5238] bg-[#E3E0D8] border border-[#0D140B] px-2 py-0.5 hidden sm:block">
                                 {child.specimens ?? 0} items
@@ -368,7 +419,15 @@ if (data.image) {
               <div className="flex justify-between items-center py-2">
                 <span className="text-sm text-[#3B5238]">Total Specimens</span>
                 <span className="font-mono font-bold text-[#0D140B]">
-                  {categories.reduce((acc, c) => acc + (c.specimens ?? 0), 0)}
+                  {categories.reduce((acc, c) => {
+                    return (
+                      acc +
+                      (c.children?.reduce(
+                        (sum, child) => sum + Number(child.specimens || 0),
+                        0
+                      ) || 0)
+                    );
+                  }, 0)}
                 </span>
               </div>
             </div>

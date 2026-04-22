@@ -20,6 +20,7 @@ export interface NewCategory {
   type: "main" | "sub";
   parentId?: string;
   image: File | null;
+  specimens?: number;
 }
 
 interface Props {
@@ -70,6 +71,7 @@ export default function AddFamilyModal({
   // const [subcategories, setSubcategories] = useState<string[]>([""]);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [specimens, setSpecimens] = useState<number>(0);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -140,6 +142,7 @@ export default function AddFamilyModal({
           type,
           parentId: type === "sub" ? parentId : undefined,
           image,
+          specimens,
         });
       
 
@@ -275,6 +278,20 @@ export default function AddFamilyModal({
                   </select>
                 </div>
               )}
+
+              {type === "sub" && (
+              <div className="flex flex-col gap-1.5">
+                <label className={labelBase}>Total Items (Specimens)</label>
+                <input
+                  type="number"
+                  value={specimens}
+                  onChange={(e) => setSpecimens(Number(e.target.value))}
+                  placeholder="e.g. 10"
+                  className={inputBase}
+                  min={0}
+                />
+              </div>
+            )}
 
               {/* {type === "sub" && !isEditing && (
                 <div className="flex flex-col gap-3">
