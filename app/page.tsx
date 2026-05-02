@@ -3,22 +3,28 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Eye, EyeOff, Leaf, Loader2 } from "lucide-react";
+import { useAdminLogin, useAdminRegister } from "@/apis/auth/Mutations";
 
 export default function LoginPage() {
   const router = useRouter();
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("hortibasket@gmail.com");
+  const [password, setPassword] = useState("hortibasket101");
   const [showPassword, setShowPassword] = useState(false);
-  const [loading, setLoading] = useState(false);
+
+  const { mutate: login, isPending: loading } = useAdminLogin();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true);
-    // Static mode: no API call, just redirect to dashboard
-    setTimeout(() => {
-      router.push("/dashboard");
-    }, 600);
+    
+    login(
+      { email, password },
+      {
+        onSuccess: () => {
+          router.push("/dashboard");
+        },
+      }
+    );
   };
 
   return (

@@ -1,9 +1,9 @@
 import axios from "axios";
 
 
-// export const AGENT_API = "http://localhost:5000/api/v1/"; 
+export const AGENT_API = "http://localhost:5000/api/v1/"; 
 // export const AGENT_API = "https://affiliate.api.caremallonline.com/api/v1/";
-export const AGENT_API = 'https://test.affiliate.api.caremallonline.com/api/v1'
+// export const AGENT_API = 'https://test.affiliate.api.caremallonline.com/api/v1'
 
 
 const axiosAdmin = axios.create({
