@@ -8,13 +8,15 @@ type MutationParams<T> = {
   onSuccessMessage?: string;
   queryKeyToInvalidate?: any | string[];
   redirectTo?: string;
+  onSuccess?: (data: any) => void;
 };
 
 export const useGenericMutation = <T>({
   apiCall,
   onSuccessMessage = 'Operation successful',
   queryKeyToInvalidate,
-  redirectTo
+  redirectTo,
+  onSuccess
 }: MutationParams<T>) => {
   const queryClient = useQueryClient();
   const router = useRouter();
@@ -23,17 +25,21 @@ export const useGenericMutation = <T>({
     mutationFn: async (data: T) => {
       try {
         const response = await apiCall(data);
-        return response;
+        return response.data; // Return .data directly as per axios pattern
       } catch (error) {
         console.log('Error:', error);
         throw error;
       }
     },
-    onSettled: async (_, error: any) => {
+    onSettled: async (data, error: any) => {
       if (error) {
         toast.error(error.message);
       } else {
         toast.success(onSuccessMessage);
+
+        if (onSuccess) {
+          onSuccess(data);
+        }
 
         if (queryKeyToInvalidate) {
           await queryClient.invalidateQueries({ queryKey: queryKeyToInvalidate });
