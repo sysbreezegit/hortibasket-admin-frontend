@@ -1,7 +1,7 @@
 
 "use client";
 
-import React, { useState, KeyboardEvent } from "react";
+import React, { useState, KeyboardEvent, useEffect } from "react";
 import { motion } from "framer-motion";
 import {
   UploadCloud,
@@ -10,8 +10,8 @@ import {
   CheckCircle2,
 } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
-// ─── Types 
 
 interface FormState {
   commonName: string;
@@ -41,7 +41,6 @@ interface FormState {
   metaDescription: string;
 }
 
-// ─── Sub-components ────────
 
 interface FieldProps {
   label: string;
@@ -109,12 +108,14 @@ function CareCard({ label, children }: CareCardProps) {
 const selectBase =
   "w-full bg-transparent border-0 border-b-[1.5px] border-[#0D140B] pb-1 text-[13px] text-[#0D140B] outline-none appearance-none cursor-pointer focus:border-[#00C725] transition-colors";
 
-// ─── Main Component ───────────────────────────────────────────────────────────
 
 export default function CreateProductPage() {
+  const router = useRouter();
+
   const [dragActive, setDragActive] = useState(false);
   const [files, setFiles] = useState<File[]>([]);
   const [tagInput, setTagInput] = useState("");
+  const [categories, setCategories] = useState<any[]>([]);
   const [form, setForm] = useState<FormState>({
     commonName: "",
     scientificName: "",
@@ -147,7 +148,6 @@ export default function CreateProductPage() {
     setForm((prev) => ({ ...prev, [key]: value }));
   }
 
-  // ── Drag & Drop ──
   const handleDrag = (e: React.DragEvent) => {
     e.preventDefault();
     e.stopPropagation();
@@ -169,7 +169,6 @@ export default function CreateProductPage() {
     }
   };
 
-  // ── Tags ──
   const handleTagKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter" && tagInput.trim()) {
       e.preventDefault();
@@ -184,11 +183,62 @@ export default function CreateProductPage() {
     set("tags", form.tags.filter((t) => t !== tag));
   };
 
+const handleSubmit = async () => {
+  try {
+    const formData = new FormData();
+
+    Object.entries(form).forEach(([key, value]) => {
+      if (Array.isArray(value)) {
+        value.forEach((v) => formData.append(key, v));
+      } else {
+        formData.append(key, value as any);
+      }
+    });
+
+    files.forEach((file) => {
+      formData.append("images", file);
+    });
+
+    const res = await fetch("http://localhost:5000/products", {
+      method: "POST",
+      body: formData,
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) throw new Error(data.message);
+
+    alert("Product created successfully!");
+
+    router.push("/products/list");
+
+  } catch (err: any) {
+    console.error("ERROR:", err.message);
+    alert("Failed to create product");
+  }
+};
+
+useEffect(() => {
+  fetch("http://localhost:5000/categories")
+    .then((res) => res.json())
+    .then((data) => {
+      console.log("API RESPONSE:", data);
+
+      if (Array.isArray(data)) {
+        setCategories(data);
+      } else {
+        setCategories([]); // fallback
+      }
+    })
+    .catch((err) => {
+      console.error("FETCH ERROR:", err);
+      setCategories([]);
+    });
+}, []);
 
   return (
     <div className="min-h-full bg-[#E3E0D8] p-8 lg:p-12 font-sans selection:bg-[#00C725] selection:text-[#0D140B]">
 
-      {/* ── Top Nav ── */}
       <motion.div
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
@@ -208,7 +258,6 @@ export default function CreateProductPage() {
         </div>
       </motion.div>
 
-      {/* ── Form ── */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
@@ -328,7 +377,7 @@ export default function CreateProductPage() {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <Field label="Category">
-              <select
+              {/* <select
                 className={`${inputBase} text-base cursor-pointer`}
                 value={form.category}
                 onChange={(e) => set("category", e.target.value)}
@@ -339,7 +388,29 @@ export default function CreateProductPage() {
                 <option>Foliage Plants</option>
                 <option>Succulents & Cacti</option>
                 <option>Flowering Plants</option>
-              </select>
+              </select> */}
+
+              <select
+              className={`${inputBase} text-base cursor-pointer`}
+              value={form.category}
+              onChange={(e) => set("category", e.target.value)}
+            >
+              <option value="">Select category...</option>
+
+              {Array.isArray(categories) &&
+                categories.map((cat) => (
+                  <option key={cat._id} value={cat._id}>
+                    {cat.name}
+                  </option>
+              ))}
+
+                    {/* {cat.children?.map((sub: any) => (
+                      <option key={sub._id} value={sub._id}>
+                        └ {sub.name}
+                      </option>
+                    ))} */}
+                  
+            </select>
             </Field>
             <Field label="Type">
               <select
@@ -561,15 +632,123 @@ export default function CreateProductPage() {
           </div>
         </section>
 
+        {/* ── 07 SEO & Discovery ── */}
+        <section className="flex flex-col gap-6">
+          <h2 className="text-2xl font-editorial-serif text-[#0D140B] border-b border-[#0D140B]/20 pb-2">
+            07. SEO & discovery
+          </h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <Field label="Meta Title">
+              <input
+                className={inputBase}
+                placeholder="e.g. Buy Monstera Albo Borsigiana Online"
+                value={form.metaTitle}
+                onChange={(e) => set("metaTitle", e.target.value)}
+              />
+              <p className="text-[11px] text-[#3B5238] mt-1 flex justify-between">
+                <span>Appears in browser tab & search results</span>
+                <span className={form.metaTitle.length > 60 ? "text-[#e55c5c]" : "text-[#3B5238]"}>
+                  {form.metaTitle.length}/60
+                </span>
+              </p>
+            </Field>
+
+            <Field label="URL Slug">
+              <div className="flex items-center gap-1 border-b-2 border-[#0D140B] focus-within:border-[#00C725] transition-colors pb-1.5 pt-1">
+                <span className="text-[#3B5238]/60 text-sm shrink-0 font-mono">/shop/</span>
+                <input
+                  className="bg-transparent border-none outline-none text-sm text-[#0D140B] font-mono flex-1 placeholder:text-[#3B5238]/60"
+                  placeholder="monstera-albo-borsigiana"
+                  value={form.urlSlug}
+                  onChange={(e) =>
+                    set(
+                      "urlSlug",
+                      e.target.value
+                        .toLowerCase()
+                        .replace(/\s+/g, "-")
+                        .replace(/[^a-z0-9-]/g, "")
+                    )
+                  }
+                />
+              </div>
+              <p className="text-[11px] text-[#3B5238] mt-1">
+                Only lowercase letters, numbers and hyphens
+              </p>
+            </Field>
+          </div>
+
+          <Field label="Meta Description">
+            <textarea
+              rows={3}
+              placeholder="A rare variegated Monstera featuring dramatic white and green foliage. Perfect for collectors..."
+              className="w-full bg-[#F2F0EA] border border-[#0D140B] p-4 text-sm text-[#0D140B]
+                        focus:ring-0 focus:outline-none focus:border-[#00C725] transition-colors
+                        placeholder:text-[#3B5238]/60 resize-none shadow-inner mt-1"
+              value={form.metaDescription}
+              onChange={(e) => set("metaDescription", e.target.value)}
+            />
+            <p className="text-[11px] text-[#3B5238] mt-1 flex justify-between">
+              <span>Shown below the title in Google search results</span>
+              <span className={form.metaDescription.length > 160 ? "text-[#e55c5c]" : "text-[#3B5238]"}>
+                {form.metaDescription.length}/160
+              </span>
+            </p>
+          </Field>
+
+          {/* Live search preview */}
+          {(form.metaTitle || form.metaDescription) && (
+            <div className="border border-[#0D140B] bg-[#F2F0EA] p-5">
+              <p className="text-[9px] font-bold uppercase tracking-[0.18em] text-[#3B5238] mb-3">
+                Search Preview
+              </p>
+              <div className="space-y-0.5">
+                <p className="text-[#1a73e8] text-base hover:underline cursor-pointer font-medium truncate">
+                  {form.metaTitle || form.commonName || "Page title"}
+                </p>
+                <p className="text-[#006621] text-xs font-mono">
+                  yoursite.com/shop/{form.urlSlug || "url-slug"}
+                </p>
+                <p className="text-[#3B5238] text-sm leading-relaxed line-clamp-2">
+                  {form.metaDescription || "Meta description will appear here…"}
+                </p>
+              </div>
+            </div>
+          )}
+
+          {/* Auto-fill helper */}
+          <button
+            type="button"
+            onClick={() => {
+              if (form.commonName && !form.metaTitle) {
+                set("metaTitle", `Buy ${form.commonName} Online | Rare Botanical`);
+              }
+              if (form.commonName && !form.urlSlug) {
+                set(
+                  "urlSlug",
+                  form.commonName.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "")
+                );
+              }
+              if (form.description && !form.metaDescription) {
+                set("metaDescription", form.description.slice(0, 155) + (form.description.length > 155 ? "…" : ""));
+              }
+            }}
+            className="self-start text-[11px] font-bold uppercase tracking-widest text-[#00C725]
+                      hover:text-[#0D140B] transition-colors flex items-center gap-1.5"
+          >
+            ↺ Auto-fill from specimen details
+          </button>
+        </section>
+
         {/* ── Footer ── */}
         <div className="pt-8 border-t border-[#0D140B] flex justify-end gap-4 mt-4">
-          <button
+          <button  onClick={handleSubmit}
             type="button"
             className="px-6 py-3 text-[#3B5238] text-sm font-bold uppercase tracking-widest hover:text-[#0D140B] transition-colors"
           >
             Save Draft
           </button>
-          <button
+          <button onClick={handleSubmit}
             type="button"
             className="group relative inline-flex items-center justify-center px-10 py-3 bg-[#0D140B] text-[#E3E0D8] overflow-hidden shadow-[4px_4px_0px_#0D140B] hover:shadow-[2px_2px_0px_#0D140B] hover:translate-x-[2px] hover:translate-y-[2px] transition-all duration-300"
           >

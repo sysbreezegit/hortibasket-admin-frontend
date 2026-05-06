@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Search,
@@ -14,71 +14,6 @@ import {
   Box,
 } from "lucide-react";
 import Link from "next/link";
-
-// Mock Data for the Editorial Botanical Aesthetic
-const PRODUCTS = [
-  {
-    id: "PRD-001",
-    name: "Monstera Albo Borsigiana",
-    category: "Rare Aroids",
-    image: "https://images.unsplash.com/photo-1614594975525-e45190c55d0b?auto=format&fit=crop&q=80&w=400&h=400",
-    price: "₹12,500",
-    stock: 12,
-    status: "active",
-    sku: "HT-MON-ALB",
-  },
-  {
-    id: "PRD-002",
-    name: "Ficus Lyrata 'Bambino'",
-    category: "Interior Trees",
-    image: "https://images.unsplash.com/photo-1600411833196-7c0f28db0c0a?auto=format&fit=crop&q=80&w=400&h=400",
-    price: "₹1,850",
-    stock: 45,
-    status: "active",
-    sku: "HT-FIC-BAM",
-  },
-  {
-    id: "PRD-003",
-    name: "Calathea Orbifolia",
-    category: "Foliage Plants",
-    image: "https://images.unsplash.com/photo-1620127807580-128a1ccaa2b2?auto=format&fit=crop&q=80&w=400&h=400",
-    price: "₹950",
-    stock: 8,
-    status: "low_stock",
-    sku: "HT-CAL-ORB",
-  },
-  {
-    id: "PRD-004",
-    name: "Philodendron Pink Princess",
-    category: "Rare Aroids",
-    image: "https://images.unsplash.com/photo-1653846665766-04283fc3c965?auto=format&fit=crop&q=80&w=400&h=400",
-    price: "₹4,200",
-    stock: 0,
-    status: "out_of_stock",
-    sku: "HT-PHI-PNK",
-  },
-  {
-    id: "PRD-005",
-    name: "Strelitzia Nicolai",
-    category: "Interior Trees",
-    image: "https://images.unsplash.com/photo-1602058428580-c0678f566494?auto=format&fit=crop&q=80&w=400&h=400",
-    price: "₹3,100",
-    stock: 24,
-    status: "draft",
-    sku: "HT-STR-NIC",
-  },
-  {
-    id: "PRD-006",
-    name: "Anthurium Clarinervium",
-    category: "Collectibles",
-    image: "https://images.unsplash.com/photo-1663162791404-54c7dca6bb21?auto=format&fit=crop&q=80&w=400&h=400",
-    price: "₹5,500",
-    stock: 18,
-    status: "active",
-    sku: "HT-ANT-CLA",
-  },
-];
-
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
@@ -94,9 +29,23 @@ const itemVariants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" as any } },
 };
 
+
 export default function ProductListPage() {
+  
+  const [products, setProducts] = useState<any[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
+
+  useEffect(() => {
+  fetch("http://localhost:5000/products")
+    .then((res) => res.json())
+    .then((resData) => {
+      console.log("API FULL RESPONSE:", resData);
+      console.log("PRODUCTS:", resData.data);
+      setProducts(resData.data || []);
+    })
+    .catch((err) => console.error(err));
+}, []);
 
   return (
     <div className="min-h-full bg-[#E3E0D8] p-8 lg:p-12 font-sans selection:bg-[#00C725] selection:text-[#0D140B]">
@@ -174,9 +123,9 @@ export default function ProductListPage() {
             animate="visible"
             className="divide-y divide-[#00C725]/40"
           >
-            {PRODUCTS.map((product) => (
+            {products.map((product) => (
               <motion.tr
-                key={product.id}
+                key={product._id}
                 variants={itemVariants}
                 className="group hover:bg-[#00C725]/10 transition-colors duration-200"
               >
@@ -186,16 +135,16 @@ export default function ProductListPage() {
                     <div className="h-14 w-14 overflow-hidden rounded-sm bg-[#00C725]/20 border border-[#0D140B] shrink-0 relative">
                       {/* Using regular img for external URLs since next/image needs domain config */}
                       <img
-                        src={product.image}
-                        alt={product.name}
+                      src={`http://localhost:5000/uploads/${product.image}`}
+                      alt={product.commonName}
                         className="h-full w-full object-cover group-hover:scale-110 transition-transform duration-500 ease-out"
                       />
                     </div>
                     <div>
                       <p className="text-[15px] font-editorial-serif font-medium text-[#0D140B] group-hover:text-[#00C725] transition-colors">
-                        {product.name}
+                        {product.commonName}
                       </p>
-                      <p className="text-[12px] text-[#3B5238] mt-0.5">{product.category}</p>
+                      <p className="text-[12px] text-[#3B5238] mt-0.5">{product.category?.name}</p>
                     </div>
                   </div>
                 </td>
@@ -209,10 +158,10 @@ export default function ProductListPage() {
                 <td className="py-5 px-4">
                   <div className="flex items-center gap-2">
                     <div className={`h-1.5 w-1.5 rounded-full ${
-                      product.stock > 10 ? 'bg-[#00C725]' : product.stock > 0 ? 'bg-[#e5a9a9]' : 'bg-red-500'
+                      product.stockQty > 10 ? 'bg-[#00C725]' : product.stockQty > 0 ? 'bg-[#e5a9a9]' : 'bg-red-500'
                     }`} />
                     <span className="text-[13px] font-medium text-[#0D140B]">
-                      {product.stock} <span className="text-[#3B5238] font-normal text-[11px]">in stock</span>
+                      {product.stockQty} <span className="text-[#3B5238] font-normal text-[11px]">in stock</span>
                     </span>
                   </div>
                 </td>
@@ -235,14 +184,14 @@ export default function ProductListPage() {
                         : "bg-gray-50 border-gray-200 text-gray-500"
                     }`}
                   >
-                    {product.status.replace("_", " ")}
+                    {product.status?.replace("_", " ") || "N/A"}
                   </span>
                 </td>
 
                 {/* Actions Col */}
                 <td className="py-5 px-4 text-right relative">
                   <button
-                    onClick={() => setActiveMenu(activeMenu === product.id ? null : product.id)}
+                    onClick={() => setActiveMenu(activeMenu === product._id ? null : product._id)}
                     className="p-2 text-[#3B5238] hover:text-[#0D140B] hover:bg-[#00C725]/30 rounded-full transition-colors"
                   >
                     <MoreHorizontal size={18} />
@@ -250,7 +199,7 @@ export default function ProductListPage() {
                   
                   {/* Action Menu Popover */}
                   <AnimatePresence>
-                    {activeMenu === product.id && (
+                    {activeMenu === product._id && (
                       <motion.div
                         initial={{ opacity: 0, scale: 0.95, y: -10 }}
                         animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -292,6 +241,7 @@ export default function ProductListPage() {
     </div>
   );
 }
+
 
 // "use client";
 
