@@ -7,6 +7,7 @@ import { Plus, ChevronRight, Hash, Edit2, Trash2, FolderTree } from "lucide-reac
 import { useState, useEffect } from "react";
 import axios from "axios";
 import AddFamilyModal, { NewCategory } from "./addcategory";
+import { useAuthStore } from "@/store/AuthStore";
 
 type Category = {
   _id: string;
@@ -40,10 +41,23 @@ export default function CategoryManagementPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const [editingData, setEditingData] = useState<Partial<Category> | null>(null);
+   const API = axios.create({
+      baseURL: "http://localhost:5000/api/v1/admin",
+    });
+
+    API.interceptors.request.use((config) => {
+      const token = useAuthStore.getState().accessToken;
+      console.log(useAuthStore.getState());
+      console.log("Sending Token:", token);
+      if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
+      }
+      return config;
+    });
 
   const fetchCategories = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/categories");
+     const res = await API.get("/categories");
       const data = res.data;
       setCategories(Array.isArray(data) ? data : data.categories || data.data || []);
     } catch (err) {
@@ -60,7 +74,7 @@ export default function CategoryManagementPage() {
 
   const handleDelete = async (id: string) => {
     try {
-      await axios.delete(`http://localhost:5000/categories/${id}`);
+      await API.delete(`/categories/${id}`);
       await fetchCategories();
     } catch (error) {
       console.error("handleDelete error:", error);
@@ -137,13 +151,11 @@ if (data.image) {
   formData.append("image", data.image);
 }
     if (editingData?._id) {
-      await axios.put(
-        `http://localhost:5000/categories/${editingData._id}`,
-        formData,
+      await API.put(`/categories/${editingData._id}`, formData, 
         { headers: { "Content-Type": "multipart/form-data" } }
       );
     } else {
-      await axios.post("http://localhost:5000/categories", formData, {
+      await API.post(`/categories`, formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
     }
